@@ -1,6 +1,6 @@
-* {
+/* * {
     margin: 0;
-  /*   background-color: rgb(44, 42, 42); */
+      background-color: rgb(44, 42, 42);
     padding: 0;
 }
 
@@ -15,5 +15,6 @@
 }
 
 #cabecalho {
-    background-color: aliceblue;
+   background-color: aliceblue;
 }
+ */
