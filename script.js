@@ -43,9 +43,13 @@ const adicionaCores = () => {
         itensPintados[index].style.backgroundColor = geraCores()
     }
 
-    if (itensPintados.style.backgroundColor === document.querySelector('.color').nextSibling.style.backgroundColor) {
+}
+adicionaCores()
+
+const verificaCoresRepetidas = () => {
+    if ( document.querySelector('.color') === document.querySelector('.color').nextSibling.style.backgroundColor) {
         document.querySelector('.color').nextSibling.style.backgroundColor = geraCores()
     }
 }
+verificaCoresRepetidas();
 
-adicionaCores()
