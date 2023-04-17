@@ -27,4 +27,21 @@ const criaPaleta = (parametro) => {
     const primeiraCorPreta = document.querySelectorAll('.color')[0];
     primeiraCorPreta.style.background = 'black'
 }
-criaPaleta(4)
+criaPaleta(7)
+
+const geraCores = () => {
+    let r = Math.random() * 255;
+    let g = Math.random() * 255;
+    let b = Math.random() * 255;
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+const adicionaCores = () => {
+    let itensPintados = document.querySelectorAll('.color');
+    for (let index = 1; index < itensPintados.length; index += 1) {
+            itensPintados[index].style.backgroundColor = geraCores()
+    }
+}
+
+adicionaCores()
