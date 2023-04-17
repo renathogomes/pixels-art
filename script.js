@@ -44,6 +44,7 @@ const adicionaCores = () => {
     }
 
 }
+onload = adicionaCores();
 
 const verificaCoresRepetidas = () => {
     if ( document.querySelector('.color') === document.querySelector('.color').nextSibling.style.backgroundColor) {
@@ -60,5 +61,5 @@ principal.appendChild(barraDeNavegacao);
 
 botaoAdicionaCores.innerText = 'Cores aleatórias';
 
-botaoAdicionaCores.addEventListener('click', adicionaCores)
+botaoAdicionaCores.addEventListener('click', adicionaCores);
 
