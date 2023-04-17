@@ -27,7 +27,7 @@ const criaPaleta = (parametro) => {
     const primeiraCorPreta = document.querySelectorAll('.color')[0];
     primeiraCorPreta.style.background = 'black'
 }
-criaPaleta(8)
+criaPaleta(4)
 
 const geraCores = () => {
     let r = Math.random() * 255;
@@ -44,6 +44,7 @@ const adicionaCores = () => {
     }
 
 }
+
 adicionaCores()
 
 const verificaCoresRepetidas = () => {
@@ -52,4 +53,6 @@ const verificaCoresRepetidas = () => {
     }
 }
 verificaCoresRepetidas();
+
+const botaoAdicionaCores = document.createElement('button#')
 
