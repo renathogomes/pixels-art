@@ -54,12 +54,12 @@ const verificaCoresRepetidas = () => {
         document.querySelector('.color').nextSibling.style.backgroundColor = geraCores()
     }
 }
+
 const salvaPeloAmor = () => {
     // quem eu vou salvar?
     const vouSalvarEsse = document.querySelector('#color-palette');
     localStorage.setItem('CoresSalvas', vouSalvarEsse.innerHTML)
 }
-
 
 const criaBotão = () => {
     const barraDeNavegacao = document.createElement('nav');
@@ -70,15 +70,15 @@ const criaBotão = () => {
 
     botaoAdicionaCores.innerText = 'Cores aleatórias';
     botaoAdicionaCores.addEventListener('click', () => {
-    adicionaCores();
-    salvaPeloAmor();
+        adicionaCores();
+        salvaPeloAmor();
     })
 
-    
+
 }
 
 const criaTabela = (parametro) => {
-    let quadroPixels = document.createElement('section');
+    const quadroPixels = document.createElement('section');
     quadroPixels.id = 'pixel-board';
     const pai = document.querySelector('#principal');
     pai.appendChild(quadroPixels);
@@ -86,14 +86,16 @@ const criaTabela = (parametro) => {
         const pixelsLinha = document.createElement('div');
         quadroPixels.appendChild(pixelsLinha);
         pixelsLinha.className = 'pixel-div';
-
+        pixelsLinha.style.display = 'flex';
     }
 }
 const criaColunas = (parametro) => {
+    for (let index = 0; index < parametro; index += 1) {
+    const paiDasColunas = document.querySelectorAll('.pixel-div')[index]
+
     for (let i = 0; i < parametro; i += 1) {
-        const paiDasColunas = document.getElementById('pixel-div')
         const colunas = document.createElement('div');
-        paiDasColunas.append(colunas);
+        paiDasColunas.appendChild(colunas);
 
         colunas.className = 'pixels';
         colunas.style.border = '1px solid black';
@@ -101,23 +103,25 @@ const criaColunas = (parametro) => {
         colunas.style.height = '40px';
     }
 }
+}
 
 const chamaStorage = () => {
-   const chama =  localStorage.getItem('CoresSalvas');
-   const pai = document.querySelector('#color-palette');
+    const chama = localStorage.getItem('CoresSalvas');
+    const pai = document.querySelector('#color-palette');
 
-   pai.innerHTML = chama;
+    pai.innerHTML = chama;
 }
 
 
 const executaFuncioes = () => {
     criaCabecalho();
-criaSection();
-criaBotão();
-criaPaleta(4);
-adicionaCores();
-verificaCoresRepetidas();
-criaTabela(5);
+    criaSection();
+    criaBotão();
+    criaPaleta(4);
+    adicionaCores();
+    verificaCoresRepetidas();
+    criaTabela(5);
+    criaColunas(5)
 }
 
 executaFuncioes();
