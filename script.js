@@ -101,6 +101,7 @@ const criaColunas = (parametro) => {
             colunas.style.border = '1px solid black';
             colunas.style.width = '40px';
             colunas.style.height = '40px';
+            colunas.style.backgroundColor = 'white';
         }
     }
 }
