@@ -50,8 +50,11 @@ const adicionaCores = () => {
 }
 
 const verificaCoresRepetidas = () => {
-    if (document.querySelector('.color') === document.querySelector('.color').nextSibling.style.backgroundColor) {
-        document.querySelector('.color').nextSibling.style.backgroundColor = geraCores()
+    const analisaCores = document.querySelectorAll('.color')
+    for (let index = 0; index < analisaCores.length; index += 1) {
+        if (document.querySelectorAll('.color')[index] === document.querySelector('.color')[index].nextSibling.style.backgroundColor) {
+            document.querySelectorAll('.color')[index].nextSibling.style.backgroundColor = geraCores()
+        }
     }
 }
 
@@ -91,18 +94,18 @@ const criaTabela = (parametro) => {
 }
 const criaColunas = (parametro) => {
     for (let index = 0; index < parametro; index += 1) {
-    const paiDasColunas = document.querySelectorAll('.pixel-div')[index]
+        const paiDasColunas = document.querySelectorAll('.pixel-div')[index]
 
-    for (let i = 0; i < parametro; i += 1) {
-        const colunas = document.createElement('div');
-        paiDasColunas.appendChild(colunas);
+        for (let i = 0; i < parametro; i += 1) {
+            const colunas = document.createElement('div');
+            paiDasColunas.appendChild(colunas);
 
-        colunas.className = 'pixels';
-        colunas.style.border = '1px solid black';
-        colunas.style.width = '40px';
-        colunas.style.height = '40px';
+            colunas.className = 'pixels';
+            colunas.style.border = '1px solid black';
+            colunas.style.width = '40px';
+            colunas.style.height = '40px';
+        }
     }
-}
 }
 
 const chamaStorage = () => {
