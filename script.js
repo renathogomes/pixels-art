@@ -84,7 +84,7 @@ const criaBotão = () => {
 
 }
 
-const criaTabela = (parametro) => {
+const criaLinhas = (parametro) => {
     const quadroPixels = document.createElement('section');
     quadroPixels.id = 'pixel-board';
     const pai = document.querySelector('#principal');
@@ -120,7 +120,6 @@ const chamaStorage = () => {
 
     pai.innerHTML = chama;
 }
-
 
 const selecionaCor = () => {
     const test = document.querySelector('#color-palette')
@@ -158,9 +157,14 @@ const botaoLimpa = () => {
 }
 
 const insereCores = () => {
-    const corInicial = document.querySelector('.selected').style.backgroundColor
-
+    const pixels = document.querySelectorAll('.pixel-div .pixel')
+        for (let index = 0; index < pixels.length; index += 1){
+            pixels[index].addEventListener('click', () => {
+                pixels[index].style.backgroundColor = document.querySelector('.selected').style.backgroundColor
+            })
+        }
 }
+
 
 const executaFuncioes = () => {
     criaCabecalho();
@@ -168,7 +172,7 @@ const executaFuncioes = () => {
     criaBotão();
     criaPaleta(4);
     adicionaCores();
-    criaTabela(5);
+    criaLinhas(5);
     criaColunas(5)
     selecionaCor()
     botaoLimpa()
@@ -176,6 +180,7 @@ const executaFuncioes = () => {
 
 window.onload = () => {
     executaFuncioes();
+    insereCores()
 
 
     if (localStorage.getItem('colorPalette')) {
