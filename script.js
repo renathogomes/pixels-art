@@ -45,7 +45,7 @@ const adicionaCores = () => {
     for (let index = 0; index < itensPintados.length; index += 1) {
         for (let index2 = 0; index2 < itensPintados.length; index2 += 1) {
             if (index === 0) {
-                itensPintados[index].style.backgroundColor = 'black'
+                itensPintados[index].style.backgroundColor = 'black';
             } else if (itensPintados[index].style.backgroundColor === itensPintados[index2].style.backgroundColor) {
                 itensPintados[index].style.backgroundColor = geraCores();
                 coresEmArray.push(itensPintados[index].style.backgroundColor = geraCores());
@@ -113,6 +113,25 @@ const chamaStorage = () => {
     pai.innerHTML = chama;
 }
 
+const selecionaCor = () => {
+    const test = document.querySelector('#color-palette')
+    test.addEventListener('click', (event) => {
+        const selected = document.querySelector('.selected')
+        if (selected) {
+            selected.classList.remove('selected')
+        }
+        event.target.classList.add('selected');
+
+    })
+}
+
+const corSelecionada = () => {
+    const algumacoisa = document.querySelectorAll('.color')[0];
+    if(algumacoisa.className === 'color'){
+        algumacoisa.classList.remove('color')
+    }
+}
+
 const executaFuncioes = () => {
     criaCabecalho();
     criaSection();
@@ -121,12 +140,14 @@ const executaFuncioes = () => {
     adicionaCores();
     criaTabela(5);
     criaColunas(5)
+    selecionaCor()
 }
 
 window.onload = () => {
     executaFuncioes();
-
+    
     if (localStorage.getItem('colorPalette')) {
         chamaStorage();
     }
 }
+
