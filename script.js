@@ -1,5 +1,4 @@
 
-
 const criaCabecalho = () => {
     const cabecalho = document.querySelector('#cabecalho');
     const tituloH1 = document.createElement('h1');
@@ -15,6 +14,8 @@ const criaSection = () => {
     principal.appendChild(paletaDeCores);
     paletaDeCores.id = 'color-palette';
     paletaDeCores.style.display = 'flex';
+    paletaDeCores.style.height = '70px';
+    paletaDeCores.style.width = '300px';
 }
 
 const criaPaleta = (parametro) => {
@@ -28,8 +29,6 @@ const criaPaleta = (parametro) => {
         cor.style.border = '1px solid black';
         cor.style.margin = '5px';
     }
-    const primeiraCorPreta = document.querySelectorAll('.color')[0];
-    primeiraCorPreta.style.background = 'black'
 }
 
 const geraCores = () => {
@@ -43,17 +42,14 @@ const geraCores = () => {
 const adicionaCores = () => {
     let coresEmArray = [];
     let itensPintados = document.querySelectorAll('.color');
-    for (let index = 1; index < itensPintados.length; index += 1) {
-        itensPintados[index].style.backgroundColor = geraCores();
-        coresEmArray.push(itensPintados[index].style.backgroundColor = geraCores());
-    }
-}
-
-const verificaCoresRepetidas = () => {
-    const analisaCores = document.querySelectorAll('.color')
-    for (let index = 0; index < analisaCores.length; index += 1) {
-        if (document.querySelectorAll('.color')[index] === document.querySelector('.color')[index].nextSibling.style.backgroundColor) {
-            document.querySelectorAll('.color')[index].nextSibling.style.backgroundColor = geraCores()
+    for (let index = 0; index < itensPintados.length; index += 1) {
+        for (let index2 = 0; index2 < itensPintados.length; index2 += 1) {
+            if (index === 0) {
+                itensPintados[index].style.backgroundColor = 'black'
+            } else if (itensPintados[index].style.backgroundColor === itensPintados[index2].style.backgroundColor) {
+                itensPintados[index].style.backgroundColor = geraCores();
+                coresEmArray.push(itensPintados[index].style.backgroundColor = geraCores());
+            }
         }
     }
 }
@@ -61,7 +57,7 @@ const verificaCoresRepetidas = () => {
 const salvaPeloAmor = () => {
     // quem eu vou salvar?
     const vouSalvarEsse = document.querySelector('#color-palette');
-    localStorage.setItem('CoresSalvas', vouSalvarEsse.innerHTML)
+    localStorage.setItem('colorPalette', vouSalvarEsse.innerHTML)
 }
 
 const criaBotão = () => {
@@ -92,6 +88,7 @@ const criaTabela = (parametro) => {
         pixelsLinha.style.display = 'flex';
     }
 }
+
 const criaColunas = (parametro) => {
     for (let index = 0; index < parametro; index += 1) {
         const paiDasColunas = document.querySelectorAll('.pixel-div')[index]
@@ -100,7 +97,7 @@ const criaColunas = (parametro) => {
             const colunas = document.createElement('div');
             paiDasColunas.appendChild(colunas);
 
-            colunas.className = 'pixels';
+            colunas.className = 'pixel';
             colunas.style.border = '1px solid black';
             colunas.style.width = '40px';
             colunas.style.height = '40px';
@@ -109,12 +106,11 @@ const criaColunas = (parametro) => {
 }
 
 const chamaStorage = () => {
-    const chama = localStorage.getItem('CoresSalvas');
+    const chama = localStorage.getItem('colorPalette');
     const pai = document.querySelector('#color-palette');
 
     pai.innerHTML = chama;
 }
-
 
 const executaFuncioes = () => {
     criaCabecalho();
@@ -122,14 +118,14 @@ const executaFuncioes = () => {
     criaBotão();
     criaPaleta(4);
     adicionaCores();
-    verificaCoresRepetidas();
     criaTabela(5);
     criaColunas(5)
 }
 
-executaFuncioes();
-
 window.onload = () => {
-    chamaStorage();
-}
+    executaFuncioes();
 
+    if (localStorage.getItem('colorPalette')) {
+        chamaStorage();
+    }
+}
