@@ -53,7 +53,7 @@ const adicionaCores = () => {
     for (let index = 0; index < itensPintados.length; index += 1) {
         for (let index2 = 0; index2 < itensPintados.length; index2 += 1) {
             if (index === 0) {
-                itensPintados[index].style.backgroundColor = 'black';
+                itensPintados[index].style.backgroundColor = 'rgb(0, 0, 0)';
             } else if (itensPintados[index].style.backgroundColor === itensPintados[index2].style.backgroundColor) {
                 itensPintados[index].style.backgroundColor = geraCores();
                 coresEmArray.push(itensPintados[index].style.backgroundColor = geraCores());
@@ -154,6 +154,11 @@ const botaoLimpa = () => {
             limpar[index].style.backgroundColor = 'white';
         }
     })
+
+}
+
+const insereCores = () => {
+    const corInicial = document.querySelector('.selected').style.backgroundColor
 
 }
 
