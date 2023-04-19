@@ -23,11 +23,19 @@ const criaPaleta = (parametro) => {
         const pai = document.querySelector('#color-palette');
         const cor = document.createElement('div');
         pai.appendChild(cor);
-        cor.className = 'color';
-        cor.style.height = '50px';
-        cor.style.width = '50px';
-        cor.style.border = '1px solid black';
-        cor.style.margin = '5px';
+        if (index === 0) {
+            cor.className = 'color selected';
+            cor.style.height = '50px';
+            cor.style.width = '50px';
+            cor.style.border = '1px solid black';
+            cor.style.margin = '5px';
+        } else {
+            cor.className = 'color';
+            cor.style.height = '50px';
+            cor.style.width = '50px';
+            cor.style.border = '1px solid black';
+            cor.style.margin = '5px';
+        }
     }
 }
 
@@ -113,6 +121,7 @@ const chamaStorage = () => {
     pai.innerHTML = chama;
 }
 
+
 const selecionaCor = () => {
     const test = document.querySelector('#color-palette')
     test.addEventListener('click', (event) => {
@@ -127,9 +136,25 @@ const selecionaCor = () => {
 
 const corSelecionada = () => {
     const algumacoisa = document.querySelectorAll('.color')[0];
-    if(algumacoisa.className === 'color'){
+    if (algumacoisa.className === 'color') {
         algumacoisa.classList.remove('color')
     }
+}
+
+const botaoLimpa = () => {
+    const btn = document.createElement('button');
+    const elementoPai = document.querySelector('nav');
+    elementoPai.appendChild(btn)
+    btn.id = 'clear-board';
+    btn.innerText = 'Limpar'
+
+    btn.addEventListener('click', () => {
+        const limpar = document.querySelectorAll('.pixel')
+        for (let index = 0; index < limpar.length; index += 1) {
+            limpar[index].style.backgroundColor = 'white';
+        }
+    })
+
 }
 
 const executaFuncioes = () => {
@@ -141,11 +166,13 @@ const executaFuncioes = () => {
     criaTabela(5);
     criaColunas(5)
     selecionaCor()
+    botaoLimpa()
 }
 
 window.onload = () => {
     executaFuncioes();
-    
+
+
     if (localStorage.getItem('colorPalette')) {
         chamaStorage();
     }
