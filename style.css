@@ -1,0 +1,13 @@
+#corpo {
+    text-align: center;
+    margin: 100px auto;
+    border: 2px solid black;
+    padding: 0 20px 20px;
+}
+#pixel-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

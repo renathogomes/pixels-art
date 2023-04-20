@@ -39,6 +39,16 @@ const criaPaleta = (parametro) => {
     }
 }
 
+const tamanhoDoQuadro = (parametro) => {
+    const tamanho = document.querySelector('#principal');
+    const tamanhoHeader = document.querySelector('#cabecalho')
+    const tamanhoCorpo = document.querySelector('#corpo')
+    const converte = parametro * 50;
+    tamanho.style.width = `${converte}px`
+    tamanhoHeader.style.width = `${converte}px`
+    tamanhoCorpo.style.width = `${converte}px`
+}
+
 const geraCores = () => {
     let r = Math.random() * 255;
     let g = Math.random() * 255;
@@ -169,10 +179,10 @@ const insereCores = () => {
     }
 }
 
-const chamaArte = () =>{
-   const chamaAArte = localStorage.getItem('pixelBoard');
-   const devolve = document.querySelector('#pixel-board')
-   devolve.innerHTML = chamaAArte
+const chamaArte = () => {
+    const chamaAArte = localStorage.getItem('pixelBoard');
+    const devolve = document.querySelector('#pixel-board')
+    devolve.innerHTML = chamaAArte
 }
 
 const chamaArtePraValer = () => {
@@ -182,6 +192,21 @@ const chamaArtePraValer = () => {
         document.querySelector('#pixel-board')
     }
 }
+
+/* const btnNumero = () => {
+    const bttn = document.createElement('button');
+    const pai = document.querySelector('nav');
+    const input = document.createElement('input')
+    bttn.appendChild(input)
+    pai.appendChild(bttn)
+
+    bttn.innerText = 'Escolha um numero'
+
+    input.id = 'escolheNumero';
+    input.innerText = 'Escolha um Numero'
+    input.style.width = '10px'
+
+} */
 
 const executaFuncioes = () => {
     criaCabecalho();
@@ -193,7 +218,9 @@ const executaFuncioes = () => {
     criaColunas(5)
     selecionaCor()
     botaoLimpa()
+/*     btnNumero() */
     chamaArtePraValer()
+    tamanhoDoQuadro(5)
 }
 
 window.onload = () => {
