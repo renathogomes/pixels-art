@@ -63,7 +63,6 @@ const adicionaCores = () => {
 }
 
 const salvaPeloAmor = () => {
-    // quem eu vou salvar?
     const vouSalvarEsse = document.querySelector('#color-palette');
     localStorage.setItem('colorPalette', vouSalvarEsse.innerHTML)
 }
@@ -80,8 +79,6 @@ const criaBotão = () => {
         adicionaCores();
         salvaPeloAmor();
     })
-
-
 }
 
 const criaLinhas = (parametro) => {
@@ -156,15 +153,35 @@ const botaoLimpa = () => {
 
 }
 
-const insereCores = () => {
-    const pixels = document.querySelectorAll('.pixel-div .pixel')
-        for (let index = 0; index < pixels.length; index += 1){
-            pixels[index].addEventListener('click', () => {
-                pixels[index].style.backgroundColor = document.querySelector('.selected').style.backgroundColor
-            })
-        }
+const salvaArte = () => {
+    const pixelSalvo = document.querySelector('#pixel-board')
+    localStorage.setItem('pixelBoard', pixelSalvo.innerHTML)
 }
 
+const insereCores = () => {
+    const pixels = document.querySelectorAll('.pixel-div .pixel')
+    for (let index = 0; index < pixels.length; index += 1) {
+        pixels[index].addEventListener('click', () => {
+            pixels[index].style.backgroundColor = document.querySelector('.selected').style.backgroundColor
+
+            salvaArte()
+        })
+    }
+}
+
+const chamaArte = () =>{
+   const chamaAArte = localStorage.getItem('pixelBoard');
+   const devolve = document.querySelector('#pixel-board')
+   devolve.innerHTML = chamaAArte
+}
+
+const chamaArtePraValer = () => {
+    if (localStorage.getItem('pixelBoard')) {
+        chamaArte()
+    } else {
+        document.querySelector('#pixel-board')
+    }
+}
 
 const executaFuncioes = () => {
     criaCabecalho();
@@ -176,12 +193,12 @@ const executaFuncioes = () => {
     criaColunas(5)
     selecionaCor()
     botaoLimpa()
+    chamaArtePraValer()
 }
 
 window.onload = () => {
     executaFuncioes();
     insereCores()
-
 
     if (localStorage.getItem('colorPalette')) {
         chamaStorage();
